@@ -19,7 +19,7 @@ import { Account } from './components/authentication/Account';
 import Date from './Date';
 import Currency from './Currency';
 
-import {Routes, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   console.log(1234.567.toCurrency())
@@ -37,59 +37,63 @@ function App() {
     }
   }
   return (
-    <div className="App">
-      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header className="mdl-layout__header">
-          <div className="mdl-layout__header-row">
+    <BrowserRouter>
+      <div className="App">
+        <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+          <header className="mdl-layout__header">
+            <div className="mdl-layout__header-row">
+              <a href="/" style={styles.navlink} className="mdl-layout-title">Dinner and a Movie</a>
+              <nav className="mdl-navigation mdl-layout--large-screen-only">
+                {state.user ?
+                  <>
+                    <a href="/account" className="mdl-layout__tab">My account</a>
+                    <a href="/logout" className="mdl-layout__tab">logout</a>
+                    <a href="/checkout" className="mdl-layout__tab"><i className="material-icons">shopping_cart</i></a>
+                  </>
+                  :
+                  <>
+                    <a href="/login" className="mdl-layout__tab">Login</a>
+                    <a href="/register" className="mdl-layout__tab">Register</a>
+                  </>
+                }
+
+              </nav>
+            </div>
+          </header>
+          <div className="mdl-layout__drawer">
             <a href="/" style={styles.navlink} className="mdl-layout-title">Dinner and a Movie</a>
-            <nav className="mdl-navigation mdl-layout--large-screen-only">
+            <nav className="mdl-navigation">
               {state.user ?
                 <>
-                  <a href="/account" className="mdl-layout__tab">My account</a>
-                  <a href="/logout" className="mdl-layout__tab">logout</a>
-                  <a href="/checkout" className="mdl-layout__tab"><i className="material-icons">shopping_cart</i></a>
+                  <a href="/account" className="mdl-layout__link">My account</a>
+                  <a href="/logout" className="mdl-layout__link">logout</a>
+                  <a href="/checkout" className="mdl-layout__link"><i className="material-icons">shopping_cart</i></a>
                 </>
                 :
                 <>
-                  <a href="/login" className="mdl-layout__tab">Login</a>
-                  <a href="/register" className="mdl-layout__tab">Register</a>
+                  <a href="/login" className="mdl-layout__link">Login</a>
+                  <a href="/register" className="mdl-layout__link">Register</a>
                 </>
               }
-
             </nav>
           </div>
-        </header>
-        <div className="mdl-layout__drawer">
-          <a href="/" style={styles.navlink} className="mdl-layout-title">Dinner and a Movie</a>
-          <nav className="mdl-navigation">
-            {state.user ?
-              <>
-                <a href="/account" className="mdl-layout__link">My account</a>
-                <a href="/logout" className="mdl-layout__link">logout</a>
-                <a href="/checkout" className="mdl-layout__link"><i className="material-icons">shopping_cart</i></a>
-              </>
-              :
-              <>
-                <a href="/login" className="mdl-layout__link">Login</a>
-                <a href="/register" className="mdl-layout__link">Register</a>
-              </>
-            }
-          </nav>
+          <main className="mdl-layout__content">
+            <Routes>
+              <Route path="/" element={<Landing {...state} />}></Route>
+              <Route path="/register" element={<Account {...state} />}></Route>
+              <Route path="/login" element={<Login {...state} />}></Route>
+              <Route path="/checkout" element={<Checkout {...state} />}></Route>
+              <Route path="/logout" element={<Logout {...state} />}></Route>
+              <Route path="/filmdetail" element={<FilmDetails {...state} />}></Route>
+              <Route path="/pickseat" element={<PickSeats {...state} />}></Route>
+              <Route path="*" element={<NotFound {...state} />}></Route>
+            </Routes>
+          </main>
+          <footer>
+          </footer>
         </div>
-        <main className="mdl-layout__content">
-          <Landing />
-          <FilmDetails />
-          <PickSeats />
-          <Checkout />
-          <NotFound />
-          <Login />
-          <Logout />
-          <Account />
-        </main>
-        <footer>
-        </footer>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

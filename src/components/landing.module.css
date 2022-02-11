@@ -1,0 +1,61 @@
+.wrapper{
+    width:"300px";
+    margin:"30px";
+    cursor:"pointer";
+  }
+  .header{
+    width: "95vw";
+    margin:"10px auto";
+    padding:"10px"
+  };
+  .filmsWrapper{
+    display:"block";
+    width: 100%;
+  };
+
+  .innerWarpper{
+    display:"flex";
+    flexDirection:"row"
+  };
+  .poster{
+    maxWidth:"95%";
+    objectFit:"contain";
+    height: 250px;
+  };
+  .posterDiv{
+    flex:"1 1 25%";
+    padding:"5px"
+  };
+  .textDiv{
+    flex:"1 1 25%";
+    padding: "10px 5px 10px 5px"
+  };
+  .title{
+    fontSize:"1.75rem";
+    fontWeight:"900";
+    textTransform:"uppercase";
+    margin: "2px"
+  };
+  .tagline{
+    margin:"2px";
+    lineHeight:"0.5em"
+  };
+  .runtime{
+    fontSize:"0.75rem";
+    margin:"2px"
+  }
+  .pickDateWrapper{
+    background-color: rgba(0,0,0,0.1);
+    padding:1em;
+  }
+  .days{
+    color:rgba(0,0,0,0.75);
+    font-size: 1.2em;
+    padding:1em;
+    cursor:pointer;
+  }
+  .card{
+    height: 350px;
+    float: left;
+    width: 190px;
+  }
